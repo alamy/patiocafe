@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pátio Café & Cozinha — Casamentos de Alto Padrão</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay"></div>
+    <nav class="nav container">
+      <div class="brand">
+        <span class="logo">Pátio</span><small class="sub">Café & Cozinha</small>
+      </div>
+      <div class="nav-cta">
+        <a href="#contato" class="btn btn-outline">Solicite Proposta</a>
+      </div>
+    </nav>
+
+    <div class="hero-content container">
+      <h1>Casamentos intimistas e sofisticados no coração das Graças</h1>
+      <p class="lead">Ambiente exclusivo, gastronomia assinada e atendimento personalizado para transformar seu casamento em uma experiência memorável.</p>
+      <div class="hero-actions">
+        <a href="#sobre" class="btn btn-ghost">Conheça o espaço</a>
+        <a href="#contato" class="btn btn-primary">Solicitar proposta</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="sobre" class="section container">
+      <div class="cols">
+        <div class="col">
+          <img src="img/logo.jfif" alt="Logo Pátio Café & Cozinha" style="max-width:180px; margin-bottom:18px; border-radius:12px; box-shadow:0 2px 12px rgba(15,23,36,0.10);">
+          <h2>Um cenário singular para dizer “sim”</h2>
+          <p>Localizado na Av. Rui Barbosa, 141 — Graças, Recife — o Pátio Café & Cozinha reúne arquitetura acolhedora, iluminação natural e acabamento de alto padrão. Perfeito para cerimônias e recepções intimistas que exigem sofisticação e calor humano.</p>
+
+          <ul class="highlights">
+            <li><strong>Gastronomia assinada</strong><span>Menus personalizados, degustação e serviço de alta gastronomia.</span></li>
+            <li><strong>Espaço versátil</strong><span>Integração entre área interna e pátio, para cerimônias ao ar livre ou climatizadas.</span></li>
+            <li><strong>Assessoria dedicada</strong><span>Equipe especializada para planejamento, montagem e coordenação no dia.</span></li>
+          </ul>
+        </div>
+        <div class="col gallery">
+          <img src="img/galeria.jpg" alt="Ambiente Pátio Café" />
+          <div class="mini-photos">
+            <img src="img/galeria2.jpg" alt="Ambiente 2">
+            <img src="img/galeria3.jpg" alt="Ambiente 3">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark section-cta">
+      <div class="container">
+        <h3>Transforme seu sonho em realidade</h3>
+        <p class="muted">Solicite uma proposta personalizada. Nossos pacotes contemplam gastronomia, décor, mobiliário e coordenação do dia.</p>
+        <a href="#contato" class="btn btn-primary">Solicitar proposta</a>
+      </div>
+    </section>
+
+    <section id="contato" class="section container form-section">
+      <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+        <div style="flex: 1 1 340px; min-width: 300px;">
+          <h2>Solicitar Proposta</h2>
+          <p class="muted">Preencha o formulário abaixo e envie sua solicitação direto pelo WhatsApp.</p>
+          <form id="leadForm" class="lead-form">
+            <div class="row">
+              <input type="text" id="name" placeholder="Nome completo" required />
+              <input type="email" id="email" placeholder="E-mail" required />
+            </div>
+            <div class="row">
+              <input type="tel" id="phone" placeholder="Telefone (com DDD)" />
+              <input type="date" id="date" placeholder="Data prevista" />
+            </div>
+            <textarea id="message" rows="4" placeholder="Nos conte sobre o seu evento (nº convidados, estilo, orçamento aproximado)"></textarea>
+            <div class="actions">
+              <button type="submit" class="btn btn-primary">Enviar via WhatsApp</button>
+              <button type="button" id="copyBtn" class="btn btn-outline">Copiar mensagem</button>
+            </div>
+            <p class="small-note">Ao clicar em enviar, o WhatsApp será aberto com a mensagem preenchida para o número do Pátio Café & Cozinha.</p>
+          </form>
+        </div>
+        <aside style="flex: 1 1 320px; min-width: 260px; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(15,23,36,0.07); padding: 32px 24px; margin-top: 24px;">
+          <h3 style="margin-top:0; font-size: 1.3em;">Simulador Gabi <span style="font-size:0.8em; color:var(--gold);">(IA do Pátio)</span></h3>
+          <label for="gabi-convidados" style="font-weight:600;">Quantos convidados?</label>
+          <input type="number" id="gabi-convidados" min="70" max="150" value="70" style="width:100%;margin:10px 0 18px 0;padding:10px 12px;border-radius:8px;border:1px solid #e6e7eb;font-size:1em;">
+          <div id="gabi-resultado" style="font-size:1.2em;font-weight:700;color:var(--accent);margin-top:10px;">Valor total: R$ 24.000,00</div>
+          <p class="muted" style="font-size:0.98em;margin-top:18px;">A Gabi faz a simulação do valor total do evento conforme o número de convidados. Mínimo 70, máximo 150.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div>
+        <strong>Pátio Café & Cozinha</strong>
+        <div class="muted">Av. Rui Barbosa, 141 — Graças, Recife - PE</div>
+      </div>
+      <div class="muted">Tel: (xx) xxxx-xxxx — Instagram: @patiocafe</div>
+      <div class="muted">© <span id="year"></span> Pátio Café & Cozinha</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
