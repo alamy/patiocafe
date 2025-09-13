@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Eventos - Pátio Café & Cozinha</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(15,23,36,0.09);
+      padding: 36px 28px;
+    }
+    .dashboard-container h2 {
+      margin-bottom: 18px;
+      font-size: 1.4em;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+    th {
+      background: #faf9f6;
+      font-weight: 700;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .logout {
+      float: right;
+      margin-top: -32px;
+      margin-bottom: 12px;
+      background: var(--gold, #c9a14a);
+      color: var(--accent, #0f1724);
+      border: none;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="dashboard-container">
+      <button class="logout" onclick="window.location.href='login.html'">Sair</button>
+      <h2>Dashboard de Eventos</h2>
+      <table aria-label="Lista de eventos agendados">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Público</th>
+            <th>Tipo</th>
+            <th>Horário</th>
+          </tr>
+        </thead>
+        <tbody id="eventos-tbody">
+          <tr><td colspan="4" style="text-align:center; color:#aaa;">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script src="dashboard.js"></script>
+</body>
+</html>

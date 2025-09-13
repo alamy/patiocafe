@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Pátio Café & Cozinha</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .login-container {
+      max-width: 340px;
+      margin: 80px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(15,23,36,0.09);
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .login-container h2 {
+      margin-bottom: 18px;
+      font-size: 1.4em;
+    }
+    .login-container input[type="password"] {
+      width: 100%;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid #e6e7eb;
+      font-size: 1em;
+      background: #faf9f6;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 14px 0;
+      font-size: 1.1em;
+      border-radius: 999px;
+      background: var(--gold, #c9a14a);
+      color: var(--accent, #0f1724);
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .login-container button:hover {
+      background: #b89a3a;
+    }
+    .login-container .error {
+      color: #b30000;
+      margin-bottom: 10px;
+      font-size: 0.98em;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="login-container" aria-labelledby="login-title">
+      <h2 id="login-title">Acesso Restrito</h2>
+      <form id="loginForm" autocomplete="off">
+        <label for="password">Palavra-chave:</label>
+        <input type="password" id="password" name="password" required aria-required="true" autofocus>
+        <div class="error" id="loginError" aria-live="polite"></div>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  </main>
+  <script src="login.js"></script>
+</body>
+</html>
