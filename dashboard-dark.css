@@ -1,0 +1,88 @@
+/* dashboard-dark.css - Tema escuro tecnológico para dashboard e comissões */
+
+body {
+  background: #181a20;
+  color: #e0e0e0;
+}
+
+.dashboard-container, .comissoes-container {
+  background: #23262f;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.45);
+  padding: 36px 28px;
+  color: #e0e0e0;
+}
+
+.dashboard-container h2, .comissoes-container h2 {
+  color: #00ffe7;
+  text-shadow: 0 2px 12px #00ffe766;
+}
+
+th, td {
+  background: transparent;
+  color: #e0e0e0;
+}
+
+th {
+  background: #23262f;
+  color: #00ffe7;
+  border-bottom: 2px solid #00ffe7;
+}
+
+table {
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+tr {
+  transition: background 0.2s;
+}
+tr:hover {
+  background: #23262f99;
+}
+
+.btn, button, .logout {
+  background: linear-gradient(90deg, #00ffe7 0%, #0057ff 100%);
+  color: #181a20 !important;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px #00ffe733;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline {
+  background: transparent !important;
+  color: #00ffe7 !important;
+  border: 2px solid #00ffe7;
+}
+.btn-primary {
+  background: linear-gradient(90deg, #00ffe7 0%, #0057ff 100%) !important;
+  color: #181a20 !important;
+}
+
+input, select {
+  background: #23262f;
+  color: #e0e0e0;
+  border: 1px solid #00ffe7;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+#comissao-info, #grafico-area {
+  color: #00ffe7;
+}
+
+#grafico-area {
+  background: #181a20;
+  border: 1px solid #00ffe7;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23262f;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ffe7;
+  border-radius: 8px;
+}

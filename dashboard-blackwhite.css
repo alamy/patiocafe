@@ -1,0 +1,88 @@
+/* dashboard-blackwhite.css - Tema preto e branco para dashboard e comissões */
+
+body {
+  background: #111;
+  color: #fff;
+}
+
+.dashboard-container, .comissoes-container {
+  background: #181818;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.45);
+  padding: 36px 28px;
+  color: #fff;
+}
+
+.dashboard-container h2, .comissoes-container h2 {
+  color: #fff;
+  text-shadow: 0 2px 12px #0008;
+}
+
+th, td {
+  background: transparent;
+  color: #fff;
+}
+
+th {
+  background: #181818;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+table {
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+tr {
+  transition: background 0.2s;
+}
+tr:hover {
+  background: #222;
+}
+
+.btn, button, .logout {
+  background: #fff;
+  color: #111 !important;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px #fff2;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline {
+  background: transparent !important;
+  color: #fff !important;
+  border: 2px solid #fff;
+}
+.btn-primary {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+input, select {
+  background: #222;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+#comissao-info, #grafico-area {
+  color: #fff;
+}
+
+#grafico-area {
+  background: #111;
+  border: 1px solid #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #181818;
+}
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 8px;
+}

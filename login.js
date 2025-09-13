@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const senha = passwordInput.value.trim();
     if (senha === 'Morgana') {
       errorDiv.textContent = '';
-      // Redireciona para o dashboard
+      // Salva token de login
+      localStorage.setItem('patiocafe_auth', 'ok');
       window.location.href = 'dashboard.html';
     } else {
       errorDiv.textContent = 'Palavra-chave incorreta.';
