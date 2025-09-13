@@ -1,3 +1,198 @@
+/* ======= RESPONSIVIDADE E ACESSIBILIDADE DE ALTO PADRÃO ======= */
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  word-break: break-word;
+}
+
+main, header, nav, section, footer, aside, form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+header.hero, .section, .footer {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Centralização e padding global */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .section {
+    padding: 32px 0;
+  }
+  .hero-content h1 {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 15px;
+  }
+  .container {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .hero-content h1 {
+    font-size: 1.1em;
+  }
+  .section {
+    padding: 18px 0;
+  }
+  .gallery img, .mini-photos img {
+    height: 90px !important;
+    min-height: 60px !important;
+    border-radius: 6px !important;
+  }
+  .section-cta {
+    padding: 16px 4px;
+  }
+  .footer {
+    padding: 10px 0;
+    font-size: 0.95em;
+  }
+  .logo {
+    font-size: 1em;
+  }
+}
+
+/* Formulários e inputs acessíveis */
+input, textarea, select, button {
+  font-size: 1em;
+  font-family: inherit;
+  border-radius: 10px;
+  border: 1.5px solid #e6e7eb;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: #fff;
+  color: var(--accent);
+  outline: none;
+  transition: box-shadow .14s;
+}
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 2px var(--gold);
+  border-color: var(--gold);
+}
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Botões maiores e mais acessíveis */
+.btn {
+  min-width: 120px;
+  min-height: 48px;
+  font-size: 1.1em;
+  border-radius: 999px;
+  padding: 14px 32px;
+}
+
+/* Melhor centralização de colunas e simulador */
+#contato .section.container.form-section > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+}
+#contato aside {
+  margin-top: 0;
+  width: 100%;
+  min-width: 0;
+  padding: 24px 12px;
+  box-shadow: 0 2px 12px rgba(15,23,36,0.06);
+  border-radius: 16px;
+  background: #fff;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  #contato .section.container.form-section > div {
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+  }
+  #contato aside {
+    margin-top: 0;
+    width: 100%;
+    min-width: 0;
+    padding: 16px 4px;
+  }
+}
+
+/* Acessibilidade para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+/* Responsividade para simulador Gabi e formulário */
+@media (max-width: 900px) {
+  #contato .section.container.form-section > div {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  #contato aside {
+    margin-top: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 20px 10px !important;
+    box-shadow: 0 2px 12px rgba(15,23,36,0.06);
+  }
+  #contato .lead-form {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+@media (max-width: 600px) {
+  .container, .section.container {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .hero-content h1 {
+    font-size: 1.3em;
+  }
+  .hero-content {
+    padding: 18px 0;
+  }
+  .gallery img, .mini-photos img {
+    height: 120px !important;
+    min-height: 80px !important;
+    border-radius: 8px !important;
+  }
+  .section-cta {
+    padding: 24px 8px;
+  }
+  .footer {
+    padding: 16px 0;
+    font-size: 0.98em;
+  }
+  .logo {
+    font-size: 1.2em;
+  }
+}
 
 
 
