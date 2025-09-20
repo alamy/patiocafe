@@ -58,12 +58,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  function filtrarEventosPorMesAnoFaturados(eventos) {
+    const mes = filtroMes.value;
+    const ano = filtroAno.value;
+    // Comissão só para eventos faturados e no mês seguinte ao fechamento
+    return eventos.filter(ev => {
+      if (!ev.data || !ev.fechamento) return false;
+      if (ev.fechamento !== 'cliente faturado') return false;
+      // mês/ano do fechamento = mês/ano selecionado - 1 mês
+      const [dia, mesEv, anoEv] = ev.data.split('/');
+      let mesComissao = parseInt(mesEv,10) + 1;
+      let anoComissao = parseInt(anoEv,10);
+      if (mesComissao > 12) { mesComissao = 1; anoComissao++; }
+      return mesComissao.toString().padStart(2,'0') === mes && anoComissao.toString() === ano;
+    });
+  }
+
   function renderComissao(eventos) {
     const comissaoInfo = document.getElementById('comissao-info');
     if (!comissaoInfo) return;
     const total = eventos.reduce((soma, ev) => soma + (Number(ev.valor)||0), 0);
     const comissao = total * 0.02;
-    comissaoInfo.innerHTML = `Comissão da vendedora (2%): <span style="color:var(--gold,#c9a14a)">R$ ${comissao.toLocaleString('pt-BR', {minimumFractionDigits:2})}</span> <br>Total de eventos fechados: <b>${eventos.length}</b>`;
+    comissaoInfo.innerHTML = `Comissão da vendedora (2%): <span style="color:var(--gold,#c9a14a)">R$ ${comissao.toLocaleString('pt-BR', {minimumFractionDigits:2})}</span> <br>Total de eventos faturados: <b>${eventos.length}</b>`;
   }
 
   function renderProgressoComissao(eventos) {
@@ -82,8 +98,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  function renderResumoAtendimento(eventos) {
+    const divResumo = document.getElementById('resumo-atendimento');
+    if (!divResumo) return;
+    // Eventos prospectados: fechamento = 'cliente prospectado'
+    // Eventos faturados: fechamento = 'cliente faturado'
+    let prospectados = 0;
+    let faturados = 0;
+    eventos.forEach(ev => {
+      if(ev.fechamento === 'cliente prospectado') prospectados++;
+      if(ev.fechamento === 'cliente faturado') faturados++;
+    });
+    divResumo.innerHTML = `Eventos prospectados: <span style="color:#ffe066">${prospectados}</span> &nbsp;|&nbsp; Eventos faturados: <span style="color:#7fff7f">${faturados}</span>`;
+  }
+
   function atualizarTudo() {
-    const eventosFiltrados = filtrarEventosPorMesAno(eventosGlobais);
+    const eventosFiltrados = filtrarEventosPorMesAnoFaturados(eventosGlobais);
+    // Para o resumo, filtrar todos do mês/ano (não só faturados)
+    const mes = filtroMes.value;
+    const ano = filtroAno.value;
+    const eventosMesAno = eventosGlobais.filter(ev => {
+      if (!ev.data) return false;
+      const [dia, mesEv, anoEv] = ev.data.split('/');
+      return mesEv === mes && anoEv === ano;
+    });
+    renderResumoAtendimento(eventosMesAno);
     renderComissao(eventosFiltrados);
     renderProgressoComissao(eventosFiltrados);
     // Atualizar gráficos se existirem

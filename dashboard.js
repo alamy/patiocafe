@@ -20,15 +20,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let eventos = [];
   let editIndex = null;
+  let filtroFechamento = '';
+  let filtroTipo = '';
+
+  function getFiltros() {
+    const selFechamento = document.getElementById('filtro-fechamento');
+    const selTipo = document.getElementById('filtro-tipo');
+    filtroFechamento = selFechamento ? selFechamento.value : '';
+    filtroTipo = selTipo ? selTipo.value : '';
+  }
+
+  function eventosFiltrados() {
+    return eventos.filter(ev => {
+      let ok = true;
+      if (filtroFechamento && ev.fechamento !== filtroFechamento) ok = false;
+      if (filtroTipo && ev.tipo !== filtroTipo) ok = false;
+      return ok;
+    });
+  }
 
   function renderTabela() {
+    getFiltros();
     const tbody = document.getElementById('eventos-tbody');
-    if (!eventos.length) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#aaa;">Nenhum evento cadastrado.</td></tr>';
+    const lista = eventosFiltrados();
+    if (!lista.length) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#aaa;">Nenhum evento cadastrado.</td></tr>';
       return;
     }
     tbody.innerHTML = '';
-    eventos.forEach((ev, idx) => {
+    lista.forEach((ev, idx) => {
       const tr = document.createElement('tr');
       if (editIndex === idx) {
         tr.innerHTML = `
@@ -44,6 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <option value="vespertino"${ev.horario==='vespertino'?' selected':''}>Vespertino</option>
             <option value="noturno"${ev.horario==='noturno'?' selected':''}>Noturno</option>
           </select></td>
+          <td><select id="edit-fechamento">
+            <option value="cliente em potencial"${ev.fechamento==='cliente em potencial'?' selected':''}>Cliente em potencial</option>
+            <option value="cliente prospectado"${ev.fechamento==='cliente prospectado'?' selected':''}>Cliente prospectado</option>
+            <option value="cliente faturado"${ev.fechamento==='cliente faturado'?' selected':''}>Cliente faturado</option>
+          </select></td>
           <td><input type="number" min="0" id="edit-valor" value="${ev.valor||''}" style="width:90px;"></td>
           <td>
             <button class="btn btn-primary" id="salvar-edit">Salvar</button>
@@ -56,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <td>${ev.publico}</td>
           <td>${ev.tipo}</td>
           <td>${ev.horario}</td>
+          <td>${ev.fechamento||'-'}</td>
           <td>${ev.valor ? 'R$ ' + Number(ev.valor).toLocaleString('pt-BR') : '-'}</td>
           <td>
             <button class="btn btn-outline" data-edit="${idx}">Editar</button>
@@ -85,11 +111,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (salvarBtn) {
       salvarBtn.onclick = function() {
         const data = fromISO(document.getElementById('edit-data').value);
-        const publico = document.getElementById('edit-publico').value + ' pessoas';
+        const publico = Number(document.getElementById('edit-publico').value);
         const tipo = document.getElementById('edit-tipo').value;
         const horario = document.getElementById('edit-horario').value;
-        const valor = Number(document.getElementById('edit-valor').value) || 0;
-        eventos[editIndex] = { data, publico, tipo, horario, valor };
+        const fechamento = document.getElementById('edit-fechamento').value;
+        // --- CONFIGURAÇÃO DE VALORES BASE ---
+        // Altere aqui o valor base da casa e o valor do buffet por pessoa:
+        let valorBaseCasa = 10000; // Valor base da casa (R$)
+        let valorBuffetPorPessoa = 200; // Valor do buffet por pessoa (R$)
+        if (publico >= 100) valorBaseCasa = 15000;
+        // --- FIM DA CONFIGURAÇÃO ---
+        let valor = valorBaseCasa + publico * valorBuffetPorPessoa;
+        // ---
+        eventos[editIndex] = { data, publico, tipo, horario, valor, fechamento };
         editIndex = null;
         renderTabela();
         renderComissao();
@@ -115,14 +149,20 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('add-evento-form').onsubmit = function(e) {
     e.preventDefault();
     const data = fromISO(document.getElementById('add-data').value);
-    const publico = document.getElementById('add-publico').value + ' pessoas';
+    const publico = Number(document.getElementById('add-publico').value);
     const tipo = document.getElementById('add-tipo').value;
     const horario = document.getElementById('add-horario').value;
-    let valor = 0;
-    const n = Number(document.getElementById('add-publico').value);
-    if (n >= 100) valor = 15000 + n*200;
-    else valor = 10000 + n*200;
-    eventos.push({ data, publico, tipo, horario, valor });
+    const fechamento = document.getElementById('add-fechamento').value;
+    // --- CONFIGURAÇÃO DE VALORES BASE ---
+    // Altere aqui o valor base da casa e o valor do buffet por pessoa:
+    let valorBaseCasa = 10000; // Valor base da casa (R$)
+    let valorBuffetPorPessoa = 200; // Valor do buffet por pessoa (R$)
+    // Se público >= 100, valor base da casa é maior
+    if (publico >= 100) valorBaseCasa = 15000;
+    // --- FIM DA CONFIGURAÇÃO ---
+    let valor = valorBaseCasa + publico * valorBuffetPorPessoa;
+    // ---
+    eventos.push({ data, publico, tipo, horario, valor, fechamento });
     renderTabela();
     renderComissao();
     this.reset();
@@ -168,4 +208,10 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = 'login.html';
     });
   }
+
+  // Filtros listeners
+  const selFechamento = document.getElementById('filtro-fechamento');
+  const selTipo = document.getElementById('filtro-tipo');
+  if(selFechamento) selFechamento.onchange = renderTabela;
+  if(selTipo) selTipo.onchange = renderTabela;
 });

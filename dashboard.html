@@ -98,7 +98,31 @@
             <option value="noturno">Noturno</option>
           </select>
         </div>
+        <div>
+          <label for="add-fechamento">Fechamento</label>
+          <select id="add-fechamento" required>
+            <option value="cliente em potencial">Cliente em potencial</option>
+            <option value="cliente prospectado">Cliente prospectado</option>
+            <option value="cliente faturado">Cliente faturado</option>
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary" style="min-width:120px;">Adicionar</button>
+      </form>
+      <form id="filtro-dashboard" style="display:flex;gap:12px;justify-content:center;align-items:center;margin-bottom:18px;">
+        <label for="filtro-fechamento" style="color:#fff;">Fechamento</label>
+        <select id="filtro-fechamento" style="min-width:140px;">
+          <option value="">Todos</option>
+          <option value="cliente em potencial">Cliente em potencial</option>
+          <option value="cliente prospectado">Cliente prospectado</option>
+          <option value="cliente faturado">Cliente faturado</option>
+        </select>
+        <label for="filtro-tipo" style="color:#fff;">Tipo</label>
+        <select id="filtro-tipo" style="min-width:120px;">
+          <option value="">Todos</option>
+          <option value="casa exclusiva">Casa exclusiva</option>
+          <option value="salão">Salão</option>
+          <option value="outro">Outro</option>
+        </select>
       </form>
       <table aria-label="Lista de eventos agendados">
         <thead>
@@ -107,12 +131,13 @@
             <th>Público</th>
             <th>Tipo</th>
             <th>Horário</th>
+            <th>Fechamento</th>
             <th>Valor</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody id="eventos-tbody">
-          <tr><td colspan="6" style="text-align:center; color:#aaa;">Carregando...</td></tr>
+          <tr><td colspan="7" style="text-align:center; color:#aaa;">Carregando...</td></tr>
         </tbody>
       </table>
       </div>
